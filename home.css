@@ -32,10 +32,13 @@
 
 /* // Default Reset - Reset padrão====================== */
 
-*, /* asterisco é um seletor universal - eleciona todos os elementos do html*/
-*::after, /* after e before são pseudo-elemento (palavra-chave q permite q vc estilize uma parte específica do código) */
+*,
+/* asterisco é um seletor universal - eleciona todos os elementos do html*/
+*::after,
+/* after e before são pseudo-elemento (palavra-chave q permite q vc estilize uma parte específica do código) */
 *::before {
-  box-sizing: border-box; /* fomatação do box model(modelo de caixa) -> box sizing (define cm a largura e a altura totais de um elemento são calculadas) - boder-box (usado p/ q as dimensões width e height já incluam o preenchimento e a borda) */
+  box-sizing: border-box;
+  /* fomatação do box model(modelo de caixa) -> box sizing (define cm a largura e a altura totais de um elemento são calculadas) - boder-box (usado p/ q as dimensões width e height já incluam o preenchimento e a borda) */
 }
 
 /*Obs. Box model - conceito q trata cada elemento HTML cm uma caixa retangular composta por 4 partes: conteúdo (texto, imagem, etc.), preenchimento (padding), borda (border) e margem (margin)*/
@@ -57,10 +60,12 @@ dd {
 
 /* // Removing list style - Removendo estilo de lista ex menu=============== */
 
-ul[role="list"], /*seletor de atributo q seleciona todos os elementos <ul> (listas não ordenadas) q possuem o atributo role="list".*/
+ul[role="list"],
+/*seletor de atributo q seleciona todos os elementos <ul> (listas não ordenadas) q possuem o atributo role="list".*/
 ol[role="list"] {
   /*seletor de atributo q seleciona todos os elementos <ol> (listas ordenadas) que possuem o mesmo atributo role="list".->O atributo role="list"  é um atributo de ARIA (Accessible Rich Internet Applications) usado para dar um "papel" a um elemento, ajudando tecnologias assistivas (cm leitores de tela) a entenderem a função de um elemento. No caso de uma lista sem marcadores visuais, o role="list" avisa ao leitor de tela q o elemento ainda é uma lista, msm q ñ pareça visualmente.*/
-  list-style: none; /*list-style controla a aparência dos marcadores de itens de uma lista. Ao definir seu valor cm none, vc remove completamente os marcadores padrão, cm as • das listas <ul> ou os 1. 2. 3. das listas <ol>.*/
+  list-style: none;
+  /*list-style controla a aparência dos marcadores de itens de uma lista. Ao definir seu valor cm none, vc remove completamente os marcadores padrão, cm as • das listas <ul> ou os 1. 2. 3. das listas <ol>.*/
 }
 
 /* // set core root defaut ============================== */
@@ -137,27 +142,35 @@ body {
 .bg-red {
   background-color: hsl(var(--clr-red));
 }
+
 .bg-black {
   background-color: hsl(var(--clr-black));
 }
+
 .bg-blue {
   background-color: hsl(var(--clr-blue));
 }
+
 .bg-gray {
   background-color: hsl(var(--clr-gray));
 }
+
 .bg-green {
   background-color: hsl(var(--clr-green));
 }
+
 .bg-gray-light {
   background-color: hsl(var(--clr-gray-light));
 }
+
 .bg-very-light-gray {
   background-color: hsl(var(--clr-very-light-gray));
 }
+
 .bg-white {
   background-color: hsl(var(--clr-white));
 }
+
 .bg-yellow {
   background-color: hsl(var(--clr-yellow));
 }
@@ -167,27 +180,35 @@ body {
 .text-red {
   background-color: hsl(var(--clr-red));
 }
+
 .text-black {
   background-color: hsl(var(--clr-black));
 }
+
 .text-blue {
   background-color: hsl(var(--clr-blue));
 }
+
 .text-gray {
   background-color: hsl(var(--clr-gray));
 }
+
 .text-green {
   background-color: hsl(var(--clr-green));
 }
+
 .text-gray-light {
   background-color: hsl(var(--clr-gray-light));
 }
+
 .text-very-light-gray {
   background-color: hsl(var(--clr-very-light-gray));
 }
+
 .text-white {
   background-color: hsl(var(--clr-white));
 }
+
 .text-yellow {
   background-color: hsl(var(--clr-yellow));
 }
@@ -197,30 +218,39 @@ body {
 .fs-900 {
   font-size: var(--fs-bf-194);
 }
+
 .fs-800 {
   font-size: var(--fs-bf-109);
 }
+
 .fs-700 {
   font-size: var(--fs-bf-80);
 }
+
 .fs-600 {
   font-size: var(--fs-bf-65);
 }
+
 .fs-500 {
   font-size: var(--fs-bf-50);
 }
+
 .fs-400 {
   font-size: var(--fs-bf-45);
 }
+
 .fs-300 {
   font-size: var(--fs-bf-30);
 }
+
 .fs-200 {
   font-size: var(--fs-bf-20);
 }
+
 .fs-100 {
   font-size: var(--fs-bf-16);
 }
+
 .fs-50 {
   font-size: var(--fs-bf-15);
 }
@@ -230,33 +260,43 @@ body {
 .bold-100 {
   font-weight: 100;
 }
+
 .bold-200 {
   font-weight: 200;
 }
+
 .bold-300 {
   font-weight: 300;
 }
+
 .bold-400 {
   font-weight: 400;
 }
+
 .bold-500 {
   font-weight: 500;
 }
+
 .bold-600 {
   font-weight: 600;
 }
+
 .bold-700 {
   font-weight: 700;
 }
+
 .bold-800 {
   font-weight: 800;
 }
+
 .bold-900 {
   font-weight: 900;
 }
+
 .bold-bold {
   font-weight: bold;
 }
+
 .bold-bolder {
   font-weight: bolder;
 }
@@ -266,6 +306,7 @@ body {
 .fs-poppins {
   font-family: "Poppins", sans-serif;
 }
+
 .fs-montserrat {
   font-family: "Montserrat", sans-serif;
 }
@@ -311,7 +352,10 @@ body {
 }
 
 .logo {
-  margin-right: 2rem;
+  margin-right: 0.5rem;
+  width: 80px;
+  padding: 0;
+  gap: 1px;
 }
 
 .mobile-close-btn {
@@ -353,9 +397,9 @@ body {
   position: relative;
 }
 
-.header-login{
+.header-login {
   --flex-gap: 1.5rem;
-    margin-left: 4rem;
+  margin-left: 4rem;
 }
 
 .header-login .uil-shopping-bag::after {
@@ -379,40 +423,41 @@ body {
 }
 
 /* =============== Cart Box ================= */
-.cart-icon{
+.cart-icon {
   position: absolute;
   inset: 0% 30% 0% 0%;
   background-color: hsl(var(--clr-very-light-gray));
+  transform: translateX(-100%);
   transform: transform 250ms ease-in-out;
   z-index: 1111;
 }
 
-.cart-icon[data-visible="true"]{
+.cart-icon[data-visible="true"] {
   transform: translateY(0%);
 }
 
-.shopping{
+.shopping {
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
 }
 
-.shopping > p{
+.shopping>p {
   font-size: var(--fs-bf-20);
   font-family: var(--font-montserrat);
 }
 
-.shopping > i{
+.shopping>i {
   font-size: 1rem;
   color: hsl(var(--clr-black) / 0.8);
   transition: trasnforrm 250ms ease-in-out;
 }
 
-.shopping i:hover{
+.shopping i:hover {
   transform: rotate(90deg);
 }
 
-.cart{
+.cart {
   flex-direction: column;
   justify-content: center;
   width: 100%;
@@ -423,7 +468,7 @@ body {
   color: hsl(var(--clr-black)/ 0.5);
 }
 
-.cart > i{
+.cart>i {
   font-size: 5rem;
   margin-bottom: -2rem;
 }
@@ -442,7 +487,7 @@ body {
     inset: 0 0 0 0;
     background-color: hsl(var(--clr-gray-light)) / 0.9;
     padding: clamp(3rem, 30vh, 10rem) 0;
-    /*transform: translateY(-100%);*/
+    transform: translateY(-100%);
     transition: transform 250ms ease-in-out;
   }
 
@@ -466,81 +511,110 @@ body {
     transform: translateY(-300%);
     transition: transform 25ms ease-in-out;
   }
-.mobile-close-btn[data-visible="true"]{
-  transform: translateY(0%);
-}
 
-.mobile-open-btn{
-  display: block;
-  font-size: 2rem;
-  cursor: pointer;
-}
+  .mobile-close-btn[data-visible="true"] {
+    transform: translateY(0%);
+  }
+
+  .mobile-open-btn {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+  }
 
 
-.car-icon{
-  z-index: 9999;
-  position: fixed;
+  .car-icon {
+    z-index: 9999;
+    position: fixed;
 
-}
+  }
 
 }
 
 /* ============= Ipad =============== */
 
-@media (min-width: 35em) and (max-width: 59em){
-.primary-navigation{
-  position: fixed;
-  flex-direction: column;
-  z-index: 9999;
-  text-align: center;
-  --flex-gap: 1.7rem;
-  inset: 0 0 0 0;
-  background-color: hsl(var(--clr-gray-light)) / 0.9;
-  padding: clamp(3rem, 30vh, 10rem) 0;
-  transform: translateY(-100%);
-  transition: trasnform 250ms ease-in-out;
-}
-
-.primary-navigation[data-visible="true"]{
-  transform: translateY(0%);
+@media (min-width: 35em) and (max-width: 59em) {
+  .primary-navigation {
+    position: fixed;
+    flex-direction: column;
+    z-index: 9999;
+    text-align: center;
+    --flex-gap: 1.7rem;
+    inset: 0 0 0 0;
+    background-color: hsl(var(--clr-gray-light)) / 0.9;
+    padding: clamp(3rem, 30vh, 10rem) 0;
+    transform: translateY(-100%);
+    transition: trasnform 250ms ease-in-out;
   }
 
-.primary-navigation a{
-  font-size: var(--fs-bf-30);
+  .primary-navigation[data-visible="true"] {
+    transform: translateY(0%);
+  }
+
+  .primary-navigation a {
+    font-size: var(--fs-bf-30);
+  }
+
+  .header-login {
+    --flex-gap: 1.5rem;
+    margin-left: 4rem;
+  }
+
+  .mobile-close-btn {
+    display: block;
+    z-index: 88888;
+    top: 5rem;
+    position: fixed;
+    right: 14rem;
+    border: 0;
+    font-size: 3rem;
+    cursor: pointer;
+    transform: translateY(-300%);
+    transition: transform 25ms ease-in-out;
+  }
+
+  .mobile-close-btn[data-visible="true"] {
+    transform: translateY(0%);
+  }
+
+  .mobile-open-btn {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .cart-icon {
+    z-index: 9999;
+    position: fixed;
+  }
+
 }
 
-.header-login{
-  --flex-gap: 1.5rem;
-  margin-left: 4rem;
-}
 
-.mobile-close-btn{
-  display: block;
-  z-index: 88888;
-  top:5rem;
-  position: fixed;
-  right: 14rem;
-  border: 0;
-  font-size: 3rem;
-  cursor: pointer;
-  transform: translateY(-300%);
-  transition: transform 25ms ease-in-out;
-}
+/* =============== Desktop ================= */
 
-.mobile-close-btn[data-visible="true"]{
-  transform: translateY(0%);
-}
+@media(min-width: 59em) {
+  .cart-icon {
+    position: absolute;
+    inset: 10% 5% 50% 60%;
+    border-radius: 1rem;
+    transform: translateX(150%);
+    transition: transform 250ms ease-in-out;
+    z-index: 222;
+  }
 
-.mobile-open-btn{
-  display: block;
-  font-size: 2rem;
-  cursor: pointer;
-}
+  .cart-icon[data-visible="true"] {
+    transform: translateX(0%);
+  }
 
-.cart-icon{
-  z-index: 9999;
-  position: fixed;
-}
+  .cart-icon.shopping {
+    display: none;
+
+  }
+
+  .cart {
+    padding-top: 4rem;
+  }
 
 }
 
@@ -548,3 +622,27 @@ body {
 /* ============= End Header Media Quaries =============== */
 
 /* =============== End Header Section =================== */
+
+
+/* ========================= Heri Section ========================== */
+
+.block{display: block;}
+
+.uppercas{text-transform: uppercase;}
+.lineheight{line-height: var(--line, 3rem);}
+.lineheight2{line-height: var(--line2, 4rem);}
+
+
+.large-btn{
+  border: 0;
+  padding:0.7rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+}
+
+.large-btn:hover{
+  background-color: hsl(var(--clr-black));
+  box-shadow: 3px 2px 37px -6px rgb(255, 255, 255, 0.69);
+  
+}
