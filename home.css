@@ -177,41 +177,15 @@ body {
 
 /* //////////////// Text Utility Class============== */
 
-.text-red {
-  background-color: hsl(var(--clr-red));
-}
-
-.text-black {
-  background-color: hsl(var(--clr-black));
-}
-
-.text-blue {
-  background-color: hsl(var(--clr-blue));
-}
-
-.text-gray {
-  background-color: hsl(var(--clr-gray));
-}
-
-.text-green {
-  background-color: hsl(var(--clr-green));
-}
-
-.text-gray-light {
-  background-color: hsl(var(--clr-gray-light));
-}
-
-.text-very-light-gray {
-  background-color: hsl(var(--clr-very-light-gray));
-}
-
-.text-white {
-  background-color: hsl(var(--clr-white));
-}
-
-.text-yellow {
-  background-color: hsl(var(--clr-yellow));
-}
+.text-red {color: hsl(var(--clr-red));}
+.text-black {color: hsl(var(--clr-black));}
+.text-blue {color: hsl(var(--clr-blue));}
+.text-gray {color: hsl(var(--clr-gray));}
+.text-green {color: hsl(var(--clr-green));}
+.text-gray-light {color: hsl(var(--clr-gray-light));}
+.text-very-light-gray {color: hsl(var(--clr-very-light-gray));}
+.text-white {color: hsl(var(--clr-white));}
+.text-yellow {color: hsl(var(--clr-yellow));}
 
 /* //////////////// Font Size ============== */
 
@@ -626,32 +600,42 @@ body {
 
 /* ========================= Heri Section ========================== */
 
-.block{display: block;}
+.block {
+  display: block;
+}
 
-.uppercas{text-transform: uppercase;}
-.lineheight{line-height: var(--line, 3rem);}
-.lineheight2{line-height: var(--line2, 4rem);}
+.uppercas {
+  text-transform: uppercase;
+}
+
+.lineheight {
+  line-height: var(--line, 3rem);
+}
+
+.lineheight2 {
+  line-height: var(--line2, 4rem);
+}
 
 
-.large-btn{
+.large-btn {
   border: 0;
-  padding:0.7rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 2rem;
   cursor: pointer;
   transition: transform 250ms ease-in-out;
 }
 
-.large-btn:hover{
+.large-btn:hover {
   background-color: hsl(var(--clr-black));
   box-shadow: 3px 2px 37px -6px rgb(255, 255, 255, 0.69);
-  
+
 }
 
 
 
 /*=========================  Hero Section CSS =======================*/
 
-.hero-section{
+.hero-section {
   width: 93vw;
   margin-inline: auto;
   padding-inline: 2rem;
@@ -661,13 +645,13 @@ body {
 }
 
 
-.hero-section> *img{
+.hero-section>*img {
   margin-top: -11rem;
   margin-left: 2rem;
 }
 
 
-.hero-inner{
+.hero-inner {
   justify-content: space-between;
   align-items: center;
   --flex-gap: 5rem;
@@ -676,6 +660,6 @@ body {
 }
 
 
-.hero-info{
+.hero-info {
   display: none;
 }
