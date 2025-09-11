@@ -582,6 +582,7 @@ body {
 .large-btn:hover {
   background-color: hsl(var(--clr-black));
   box-shadow: 3px 2px 37px -6px rgb(255, 255, 255, 0.69);
+  transition: 0.5s;
 
 }
 
