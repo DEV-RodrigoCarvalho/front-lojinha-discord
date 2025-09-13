@@ -682,7 +682,6 @@ body {
   margin-inline: auto;
 }
 
-
 .category{
   border-radius: 2rem;
   grid-template-columns: repeat(2, 1fr);
@@ -701,6 +700,10 @@ body {
 .earphone{
   color: hsl(var(--clr-white) / 0.2);
 }
+
+
+/*============================ Product ============================*/
+
 .product-img1{
   position: absolute;
   top: -2.3rem;
@@ -708,8 +711,104 @@ body {
   z-index: -11;
 }
 
+.product-img2{
+  position: absolute;
+  top: -0.5rem;
+  right: -6rem;
+  z-index: -11;
+}
+
+.product-img3{
+  position: absolute;
+  top: 80%rem;
+  right: -3.5rem;
+  z-index: 2.5rem;
+}
 
 
+.product-img4{
+  position: absolute;
+  top: -2.3rem;
+  right: 3rem;
+  z-index: -11;
+}
 
-  /*============================ Product-Section ============================*/
+.product-img5{
+  position: absolute;
+  top: 4.5rem;
+  right: 5rem;
+  z-index: -1;
+}
 
+.product-img6{
+  position: 3%;
+  top: -20rem;
+  right: 5rem;
+  z-index: 2;
+}
+
+/*============================ Category of Product ============================*/  
+
+.category:nth-cild(1){
+  grid-area: one;
+}
+.category:nth-cild(2){
+  grid-area: two;
+}
+
+.category:nth-cild(3){
+  grid-area: three;
+}
+
+.category:nth-cild(4){
+  grid-area: four;
+}
+
+.category:nth-cild(5){
+  grid-area: five;
+}
+.category:nth-cild(6){
+  grid-area: six;
+}
+
+/*============================ Building Layout For Tab & Desktop ============================*/  
+
+
+@media(min-width: 35em) and (max-width: 59em){
+  .product-section{
+    width: 59vw;
+    margin-inline: auto;
+    margin-block: 2rem;
+    gap: 1.5rem;
+    grid-template-areas: 
+    'one two'
+    'three three'
+    'six five'
+    'four four';
+  }
+
+/*============================ And - Building Layout For Tab & Desktop ============================*/  
+  .category{
+    margin-block: 0rem;
+  }
+  
+  .product-img3{
+    width: 50%;
+    position: absolute;
+    right: 1rem;
+    top: 4.8rem;  
+  }
+
+  .product-img4{
+    width: 60%;
+    position: absolute;
+    /* right: 1rem; */
+    top: 4.8rem;  
+  }
+
+  .product-img5{
+    position: absolute;
+    width: 90%;
+    top: 8.4rem;
+  }
+}
