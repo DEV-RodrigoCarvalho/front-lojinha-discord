@@ -30,7 +30,7 @@
   --font-poppins: "Poppins", sans-serif;
 }
 
-/*  ================================Media Queries For Font Size============================ */
+/* ================================Media Queries For Font Size============================ */
 
 @media (max-width: 35em){
   .root{
