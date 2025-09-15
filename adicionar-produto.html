@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Novo Produto</title>
+    <link rel="stylesheet" href="home.css">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background-color: hsl(var(--clr-gray-light));
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h1 {
+            font-family: var(--font-poppins);
+            margin-bottom: 2rem;
+            text-align: center;
+            color: hsl(var(--clr-black));
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-family: var(--font-montserrat);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid hsl(var(--clr-gray));
+            border-radius: 0.5rem;
+            font-family: var(--font-montserrat);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-family: var(--font-poppins);
+            font-size: var(--fs-bf-16);
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header class="primary-header container flex">
+        <div class="header-inner-one flex">
+            <div class="logo">
+                <img src="assets/logo.png" alt="logo imagem">
+            </div>
+            <nav>
+                <ul role="list" class="primmary-navigation flex">
+                    <li><a class="fs-100 fs-montserrat bold-500" href="home.html">Home</a></li>
+                    <!-- <li><a class="fs-100 fs-montserrat bold-500" href="#">Shop</a></li>
+                    <li><a class="fs-100 fs-montserrat bold-500" href="#">Sobre</a></li>
+                    <li><a class="fs-100 fs-montserrat bold-500" href="#">Blog</a></li>
+                    <li><a class="fs-100 fs-montserrat bold-500" href="#">Contato</a></li> -->
+                    <li><a class="fs-100 fs-montserrat bold-500 text-blue" href="adicionar-produto.html">Adicionar Produto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-login flex">
+            <p class="fs-100 fs-montserrat bold-500">login</p>
+            <i class="uil uil-search"></i>
+            <i class="uil uil-shopping-bag"></i>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h1>Adicionar Novo Produto</h1>
+            <form id="add-product-form">
+                <div class="form-group">
+                    <label for="product-name">Nome do Produto</label>
+                    <input type="text" id="product-name" name="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Preço (ex: 250.00)</label>
+                    <input type="number" id="product-price" name="product-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">URL da Imagem</label>
+                    <input type="url" id="product-image" name="product-image" placeholder="https://exemplo.com/imagem.png" required>
+                </div>
+                <button type="submit" class="submit-btn bg-blue text-white">Adicionar</button>
+            </form>
+        </div>
+    </main>
+    <script src="adicionar-produto.js">AddProduto</script>
+</body>
+</html>
