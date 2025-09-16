@@ -1,54 +1,102 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const productListContainer = document.getElementById('product-list');
+    const activeListContainer = document.getElementById('active-product-list');
+    const deletedListContainer = document.getElementById('deleted-product-list');
 
-    // Tenta carregar os produtos do localStorage. Se não houver, usa um array vazio.
-    let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+    // Carrega a lista de produtos ativos do localStorage
+    let produtosAtivos = JSON.parse(localStorage.getItem('produtos')) || [];
+    // Carrega a lista de produtos excluídos (lixeira)
+    let produtosExcluidos = JSON.parse(localStorage.getItem('produtosExcluidos')) || [];
 
-    // Função para renderizar (desenhar) a lista de produtos na tela
-    function renderizarProdutos() {
-        // Limpa a lista antes de redesenhar para não duplicar itens
-        productListContainer.innerHTML = '';
+    /**
+     * Salva ambas as listas no localStorage.
+     */
+    function salvarListas() {
+        localStorage.setItem('produtos', JSON.stringify(produtosAtivos));
+        localStorage.setItem('produtosExcluidos', JSON.stringify(produtosExcluidos));
+    }
 
-        if (produtos.length === 0) {
-            productListContainer.innerHTML = '<p style="text-align: center;">Nenhum produto cadastrado.</p>';
-            return;
+    /**
+     * Move um produto da lista de ativos para a lixeira.
+     */
+    function moverParaLixeira(index) {
+        // Retira o produto da lista de ativos
+        const produtoMovido = produtosAtivos.splice(index, 1)[0];
+        // Adiciona o produto à lista de excluídos
+        produtosExcluidos.push(produtoMovido);
+        // Salva as alterações e atualiza a tela
+        salvarListas();
+        renderizarTudo();
+    }
+
+    /**
+     * Restaura um produto da lixeira para a lista de ativos.
+     */
+    function restaurarProduto(index) {
+        // Retira o produto da lixeira
+        const produtoRestaurado = produtosExcluidos.splice(index, 1)[0];
+        // Adiciona o produto de volta à lista de ativos
+        produtosAtivos.push(produtoRestaurado);
+        // Salva as alterações e atualiza a tela
+        salvarListas();
+        renderizarTudo();
+    }
+
+    /**
+     * Desenha as duas listas na tela.
+     */
+    function renderizarTudo() {
+        // Limpa e desenha a lista de produtos ativos
+        activeListContainer.innerHTML = '';
+        if (produtosAtivos.length === 0) {
+            activeListContainer.innerHTML = '<p>Nenhum produto ativo na loja.</p>';
+        } else {
+            produtosAtivos.forEach((produto, index) => {
+                activeListContainer.innerHTML += `
+                    <div class="product-item">
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <div class="product-item-details">
+                            <strong>${produto.nome}</strong>
+                            <p>Categoria: ${produto.categoria || 'N/A'}</p>
+                        </div>
+                        <button class="action-btn bg-red text-white" data-action="delete" data-index="${index}">Mover para Lixeira</button>
+                    </div>
+                `;
+            });
         }
 
-        produtos.forEach((produto, index) => {
-            const produtoDiv = document.createElement('div');
-            produtoDiv.className = 'product-item';
-            produtoDiv.innerHTML = `
-                <img src="${produto.imagem}" alt="${produto.nome}">
-                <div class="product-item-details">
-                    <strong>${produto.nome}</strong>
-                    <p>Preço: R$ ${produto.preco}</p>
-                </div>
-                <button class="delete-btn bg-red text-white" data-index="${index}">Excluir</button>
-            `;
-            productListContainer.appendChild(produtoDiv);
-        });
+        // Limpa e desenha a lista de produtos na lixeira
+        deletedListContainer.innerHTML = '';
+        if (produtosExcluidos.length === 0) {
+            deletedListContainer.innerHTML = '<p>A lixeira está vazia.</p>';
+        } else {
+            produtosExcluidos.forEach((produto, index) => {
+                deletedListContainer.innerHTML += `
+                    <div class="product-item">
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <div class="product-item-details">
+                            <strong>${produto.nome}</strong>
+                            <p>Categoria: ${produto.categoria || 'N/A'}</p>
+                        </div>
+                        <button class="action-btn bg-green text-white" data-action="restore" data-index="${index}">Restaurar</button>
+                    </div>
+                `;
+            });
+        }
     }
 
-    // Função para excluir um produto
-    function excluirProduto(index) {
-        // Remove o produto do array pelo seu índice
-        produtos.splice(index, 1);
-        // Salva o array atualizado de volta no localStorage
-        localStorage.setItem('produtos', JSON.stringify(produtos));
-        // Redesenha a lista na tela para refletir a exclusão
-        renderizarProdutos();
-    }
+    // Adiciona os "ouvintes" de cliques para as ações
+    document.body.addEventListener('click', (event) => {
+        const target = event.target;
+        const action = target.getAttribute('data-action');
+        const index = target.getAttribute('data-index');
 
-    // Adiciona um "ouvinte" de cliques na área da lista.
-    // Isso é mais eficiente do que adicionar um ouvinte para cada botão.
-    productListContainer.addEventListener('click', (event) => {
-        // Verifica se o clique foi em um botão de exclusão
-        if (event.target.classList.contains('delete-btn')) {
-            const index = event.target.getAttribute('data-index');
-            excluirProduto(index);
+        if (action === 'delete') {
+            moverParaLixeira(index);
+        } else if (action === 'restore') {
+            restaurarProduto(index);
         }
     });
 
-    // Chama a função para mostrar os produtos assim que a página carrega
-    renderizarProdutos();
+    // Inicia a renderização quando a página carrega
+    renderizarTudo();
 });

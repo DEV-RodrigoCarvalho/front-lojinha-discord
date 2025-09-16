@@ -1,5 +1,3 @@
-// ==================== SCRIPT FINAL COM CONTADOR CORRIGIDO ====================
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==================== SELETORES DE ELEMENTOS ====================
@@ -13,27 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotalElement = document.getElementById('cart-total-value');
     const checkoutBtn = document.getElementById('checkout-btn');
     const productContainer = document.getElementById('product-list-container');
-    const cartCounterElement = document.getElementById('cart-counter'); // NOVO SELETOR PARA O CONTADOR
+    const cartCounterElement = document.getElementById('cart-counter');
 
     // ==================== CARREGAMENTO DE DADOS ====================
     let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
     // ==================== FUNÇÕES DO CARRINHO ====================
-
+    // (Esta parte não foi alterada)
     function salvarCarrinho() {
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
     }
 
-    /**
-     * FUNÇÃO CORRIGIDA: Agora atualiza o <span>.
-     */
     function atualizarContadorCarrinho() {
         if (carrinho.length > 0) {
             cartCounterElement.textContent = carrinho.length;
-            cartCounterElement.style.display = 'grid'; // Mostra o contador
+            cartCounterElement.style.display = 'grid';
         } else {
-            cartCounterElement.style.display = 'none'; // Esconde se o carrinho estiver vazio
+            cartCounterElement.style.display = 'none';
         }
     }
 
@@ -70,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartItemsContainer.innerHTML += itemHTML;
             });
         }
-        atualizarContadorCarrinho(); // Atualiza o número no ícone
+        atualizarContadorCarrinho();
         calcularTotalCarrinho();
     }
     
@@ -87,34 +82,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ==================== LÓGICA DE EXIBIÇÃO DE PRODUTOS ====================
     if (productContainer) {
-        // ... (código de exibição de produtos permanece o mesmo) ...
-        productContainer.innerHTML = '';
+
+        // #################### NOVA LÓGICA COMEÇA AQUI ####################
+        // (O bloco de código antigo daqui para baixo foi substituído por este)
+
+        productContainer.innerHTML = ''; // Limpa o container principal
+
         if (produtos.length === 0) {
             productContainer.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem;"><p style="font-size: 1.2rem;">Nenhum produto cadastrado.</p></div>`;
         } else {
-            produtos.forEach((produto, index) => {
-                const colors = ['black', 'yellow', 'red', 'green', 'blue', 'gray'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            // 1. Agrupa os produtos por categoria num objeto
+            const produtosPorCategoria = produtos.reduce((acc, produto) => {
+                const categoria = produto.categoria || 'Outros'; // Usa 'Outros' se não tiver categoria
+                if (!acc[categoria]) {
+                    acc[categoria] = []; // Cria um array para a categoria se ainda não existir
+                }
+                acc[categoria].push(produto); // Adiciona o produto ao array da sua categoria
+                return acc;
+            }, {});
+
+            // 2. Cria uma secção HTML para cada categoria
+            for (const categoria in produtosPorCategoria) {
+                // Cria o título da categoria (ex: <h2>Eletrônicos</h2>)
+                const categorySection = document.createElement('section');
+                categorySection.className = 'category-section';
+                categorySection.innerHTML = `<h2 class="category-title">${categoria}</h2>`;
                 
-                const produtoHTML = `
-                    <div class="category bg-${randomColor} grid">
-                        <div>
-                            <h3 class="text-white fs-50 fs-montserrat">${produto.nome}
-                                <span class="block fs-300 fs-poppins">R$ ${parseFloat(produto.preco).toFixed(2)}</span>
-                            </h3>
-                            <button class="product-btc large-btn text-white bg-red fs-montserrat" data-index="${index}">Adicionar ao Carrinho</button>
+                // Cria a grelha de produtos para esta categoria
+                const productGrid = document.createElement('div');
+                productGrid.className = 'product-grid';
+
+                // 3. Adiciona cada produto da categoria à sua grelha
+                produtosPorCategoria[categoria].forEach((produto, index) => {
+                    const produtoHTML = `
+                        <div class="product-card">
+                            <div class="product-card-image" style="background-image: url('${produto.imagem}');"></div>
+                            <div class="product-card-info">
+                                <h3 class="product-name">${produto.nome}</h3>
+                                <p class="product-observation">${produto.observacao || ''}</p>
+                                <p class="product-price">R$ ${parseFloat(produto.preco).toFixed(2)}</p>
+                                <button class="product-btc large-btn bg-red text-white" data-index="${index}">Adicionar</button>
+                            </div>
                         </div>
-                        <div class="product-img-wrapper">
-                            <img src="${produto.imagem}" alt="${produto.nome}">
-                        </div>
-                    </div>
-                `;
-                productContainer.innerHTML += produtoHTML;
-            });
+                    `;
+                    productGrid.innerHTML += produtoHTML;
+                });
+
+                // Adiciona a grelha de produtos completa à secção da categoria
+                categorySection.appendChild(productGrid);
+                // Adiciona a secção da categoria completa ao container principal da página
+                productContainer.appendChild(categorySection);
+            }
         }
+        // #################### NOVA LÓGICA TERMINA AQUI ####################
     }
 
     // ==================== EVENT LISTENERS ====================
+    // (Esta parte não foi alterada)
     if (navOpenBtn && navCloseBtn && primaryNavigation) {
         navOpenBtn.addEventListener('click', () => {
             primaryNavigation.setAttribute('data-visible', 'true');

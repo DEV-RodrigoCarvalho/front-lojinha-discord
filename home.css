@@ -317,27 +317,24 @@ body {
   vertical-align: middle;
 }
 
-/* PASSO 1: Garanta que o ícone do carrinho seja a referência de posicionamento */
 .header-login .uil-shopping-bag {
-  position: relative; /* ESSENCIAL para que o contador se posicione em relação a ele */
-  font-size: 3.2rem;  /* Aumentei um pouco para melhor visualização */
+  position: relative; /*quantidade no carrinho*/
+  font-size: 3.2rem; 
   vertical-align: middle;
-  margin-top: 0; /* Removido o margin-top que podia causar problemas */
+  margin-top: 0;
 }
 
-/* PASSO 2: Garanta que a regra antiga do pseudo-elemento está desativada */
 .header-login .uil-shopping-bag::after {
   display: auto;
   content: '';
 }
 
-/* PASSO 3: Nova regra para o contador, com posicionamento preciso */
 #cart-counter {
   position: absolute;
-  top: 39px;   /* Alinha o topo do contador perto do topo do ícone */
-  right: 25px;  /* Alinha a direita do contador com a direita do ícone */
+  top: 39px; 
+  right: 25px;
   
-  /* Este "transform" ajusta a posição para centralizar o círculo no canto */
+  /*posição da quantidade de intes */
   transform: translate(60%, -30%); 
 
   background-color: hsl(var(--clr-red));
@@ -348,12 +345,10 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
   
-  /* Usa flexbox para garantir que o número fica sempre perfeitamente centrado */
+  /* se o numero ta realmente dentro do carrinho*/
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Escondido por padrão, o JavaScript irá mostrar quando houver itens */
   display: none;
 }
 
@@ -410,7 +405,7 @@ body {
 
 /* =============== Header Media Quaries ================= */
 
-/* //////////////// Mobile ============== */
+/* ============== Mobile ============== */
 
 @media (max-width: 35rem) {
   .primary-navigation {
@@ -553,15 +548,7 @@ body {
 
 }
 
-
-/* ============= End Header Media Quaries =============== */
-
-/* =============== End Header Section =================== */
-
-
-/* ========================= Heri Section ========================== */
-
-/*Classes de utils*/
+/*=========================  Classes de utils =======================*/
 
 .block {
   display: block;
@@ -758,30 +745,29 @@ body {
 
 /* ==================== AJUSTE PARA O TAMANHO DAS IMAGENS DOS PRODUTOS ==================== */
 
-/* Este é o "recipiente" da imagem, que ajuda a posicioná-la */
+
 .product-img-wrapper{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Impede que a imagem saia dos limites do cartão */
-  z-index: 0; /* Coloca as imagens atrás do texto e dos botões */
+  overflow: hidden;
+  z-index: 0; 
 }
 
-/* Regra para a imagem do produto em si */
+
 .product-img-wrapper img {
   /* Controle de Tamanho */
-  max-width: 160px;   /* <<-- PODE AJUSTAR ESTE VALOR PARA MUDAR O TAMANHO */
-  height: auto;       /* Mantém a proporção correta da imagem */
+  max-width: 160px;   /*tamanho da imagem, e hight - proporção da imagem */
+  height: auto;       
 
-  /* Controle de Posição */
-  position: absolute; /* Permite mover a imagem livremente dentro do "wrapper" */
-  bottom: 10px;       /* Distância da parte de baixo */
-  right: 10px;        /* Distância da direita */
+  /*============================ Controle de Posição ============================*/  
 
-  /* Efeito visual (opcional) */
-  transform: rotate(-10deg);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  transform: rotate(-5deg); /*roda a imagem*/
 }
 
 /*============================ Category of Product ============================*/  
@@ -864,3 +850,116 @@ body {
 }
 
 /* =======================================  Carrinho    ========================================*/
+
+/* ==================== ESTILOS PARA GRELHA DE PRODUTOS POR CATEGORIA ==================== */
+
+/* Título da Categoria */
+.category-title {
+    font-family: var(--font-poppins);
+    font-size: var(--fs-bf-45);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid hsl(var(--clr-gray));
+}
+
+/* A Grelha de Produtos (ex: 3 colunas) */
+.product-grid {
+    display: grid;
+    /* <<-- Altere '3' para '4' se quiser 4 colunas -->> */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; /* Espaçamento entre os produtos */
+    margin-bottom: 4rem;
+}
+
+/* Cartão de cada Produto */
+.product-card {
+    background-color: hsl(var(--clr-white));
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Imagem do Produto */
+.product-card-image {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Informações do Produto (Texto) */
+.product-card-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz com que esta área ocupe o espaço restante */
+}
+
+.product-name {
+    font-family: var(--font-poppins);
+    font-size: var(--fs-bf-20);
+    margin: 0 0 0.5rem 0;
+}
+
+.product-observation {
+    font-family: var(--font-montserrat);
+    color: #666;
+    margin: 0 0 1rem 0;
+    flex-grow: 1; /* Empurra o preço e o botão para baixo */
+}
+
+.product-price {
+    font-family: var(--font-poppins);
+    font-size: var(--fs-bf-30);
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+}
+
+.product-card .product-btc {
+    width: 100%;
+}
+
+.homeadd:hover{
+  border-radius: 6px;
+}
+
+.homeHome-btn{
+  width: 8rem;
+  border-radius: 6px;
+  background-color: blue;
+
+}
+
+.homeAddProduto-btn{
+  width: 12rem;
+  border-radius: 6px;
+  background-color: blue;
+}
+
+
+.homeExcluirProduto-btn{
+  width: 12rem;
+  border-radius: 6px;
+  background-color: blue;
+}
+
+
+/* Media Query para telas menores (ex: 1 coluna em telemóveis) */
+@media (max-width: 59em) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablets */
+    }
+}
+
+@media (max-width: 35em) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 coluna em telemóveis */
+    }
+}
