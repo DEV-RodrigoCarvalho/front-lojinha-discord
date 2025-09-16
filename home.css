@@ -308,7 +308,7 @@ body {
 .header-login {
   justify-content: space-between;
   align-items: center;
-  --flex-gap: 2rem;
+  --flex-gap: 0.5rem;
 }
 
 .header-login .uil {
@@ -317,34 +317,43 @@ body {
   vertical-align: middle;
 }
 
+/* PASSO 1: Garanta que o ícone do carrinho seja a referência de posicionamento */
 .header-login .uil-shopping-bag {
-  font-size: 2rem;
-  margin-top: -0.5rem;
-  position: relative;
+  position: relative; /* ESSENCIAL para que o contador se posicione em relação a ele */
+  font-size: 3.2rem;  /* Aumentei um pouco para melhor visualização */
+  vertical-align: middle;
+  margin-top: 0; /* Removido o margin-top que podia causar problemas */
 }
 
-.header-login {
-  --flex-gap: 1.5rem;
-  margin-left: 4rem;
-}
-
+/* PASSO 2: Garanta que a regra antiga do pseudo-elemento está desativada */
 .header-login .uil-shopping-bag::after {
-  content: "0";
-  width: 1rem;
-  height: 1.2rem;
-  position: absolute;
-  background-color: hsl(var(--clr-red));
-  /*margin-top: -3rem;*/
-  margin-left: 1rem;
-  border-radius: 0.3rem;
-  display: grid;
-  place-items: center;
-  color: hsl(var(--clr-white));
-  font-size: 1rem;
-  font-weight: 700;
+  display: auto;
+  content: '';
 }
 
-.mobile-open-btn {
+/* PASSO 3: Nova regra para o contador, com posicionamento preciso */
+#cart-counter {
+  position: absolute;
+  top: 39px;   /* Alinha o topo do contador perto do topo do ícone */
+  right: 25px;  /* Alinha a direita do contador com a direita do ícone */
+  
+  /* Este "transform" ajusta a posição para centralizar o círculo no canto */
+  transform: translate(60%, -30%); 
+
+  background-color: hsl(var(--clr-red));
+  color: hsl(var(--clr-white));
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  
+  /* Usa flexbox para garantir que o número fica sempre perfeitamente centrado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Escondido por padrão, o JavaScript irá mostrar quando houver itens */
   display: none;
 }
 
@@ -387,7 +396,7 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  --flex-gap: 0.5rem;
+  --flex-gap: 3rem;
   align-items: center;
   font-family: var(--font-poppins);
   text-transform: uppercase;
@@ -395,7 +404,7 @@ body {
 }
 
 .cart>i {
-  font-size: 5rem;
+  font-size: 20rem;
   margin-bottom: -2rem;
 }
 
@@ -747,6 +756,34 @@ body {
   z-index: 2;
 }
 
+/* ==================== AJUSTE PARA O TAMANHO DAS IMAGENS DOS PRODUTOS ==================== */
+
+/* Este é o "recipiente" da imagem, que ajuda a posicioná-la */
+.product-img-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Impede que a imagem saia dos limites do cartão */
+  z-index: 0; /* Coloca as imagens atrás do texto e dos botões */
+}
+
+/* Regra para a imagem do produto em si */
+.product-img-wrapper img {
+  /* Controle de Tamanho */
+  max-width: 160px;   /* <<-- PODE AJUSTAR ESTE VALOR PARA MUDAR O TAMANHO */
+  height: auto;       /* Mantém a proporção correta da imagem */
+
+  /* Controle de Posição */
+  position: absolute; /* Permite mover a imagem livremente dentro do "wrapper" */
+  bottom: 10px;       /* Distância da parte de baixo */
+  right: 10px;        /* Distância da direita */
+
+  /* Efeito visual (opcional) */
+  transform: rotate(-10deg);
+}
+
 /*============================ Category of Product ============================*/  
 
 .category:nth-cild(1){
@@ -811,4 +848,19 @@ body {
     width: 90%;
     top: 8.4rem;
   }
+
+  /* Ajuste para imagens de produtos dinâmicos */
+.product-img-wrapper {
+    position: relative;
+    z-index: 10;
 }
+
+.product-img-wrapper img {
+    max-width: 150px; /* Ajuste o tamanho conforme necessário */
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+}
+
+/* =======================================  Carrinho    ========================================*/
